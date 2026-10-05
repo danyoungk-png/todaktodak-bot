@@ -343,37 +343,14 @@ app.post('/api/counsel', async (req, res) => {
 `;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
+      model: 'gemini-3.1-flash-lite',
       contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-      },
     });
 
     const responseText = response.text || '{}';
-    let parsedResult;
-    try {
-      parsedResult = JSON.parse(responseText);
-    } catch {
-      // Fallback if parsing fails
-      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        parsedResult = JSON.parse(jsonMatch[0]);
-      } else {
-        parsedResult = {
-          empathySummary: '그동안 혼자 견디느라 정말 고생 많으셨어요.',
-          deepComfort: responseText,
-          psychologicalReframing: '당신은 지금 이 순간에도 충분히 가치 있는 사람입니다.',
-          microActions: [
-            { title: '따뜻한 물 한 잔 마시기', description: '천천히 목을 축이며 긴장된 몸을 이완해 보세요.' },
-            { title: '스마트폰 10분 내려놓기', description: '외부의 비교와 소음에서 벗어나 나만의 숨을 쉬어보세요.' },
-            { title: '스스로에게 괜찮다고 말해주기', description: '오늘 하루도 버텨낸 나에게 토닥토닥 위로를 건네보세요.' }
-          ],
-          pocketCheer: '넘어져도 괜찮아요, 잠시 쉬어가는 풀밭일 뿐이니까요.',
-          recommendedQuote: '흔들리지 않고 피는 꽃이 어디 있으랴.'
-        };
-      }
-    }
+    // Strip potential markdown formatting
+    const cleanedText = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
+    const parsedResult = JSON.parse(cleanedText);
 
     res.json(parsedResult);
   } catch (error: any) {

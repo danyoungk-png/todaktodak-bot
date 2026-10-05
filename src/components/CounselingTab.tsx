@@ -122,21 +122,7 @@ export const CounselingTab: React.FC<CounselingTabProps> = ({
       }
     } catch (err: any) {
       console.error(err);
-      // Friendly fallback
-      setCounselResult({
-        empathySummary: '홀로 감당하기에 벅찬 무게였을 텐데, 용기 내어 털어놓아 주셔서 고마워요.',
-        deepComfort:
-          '모두가 각자의 속도로 걸어가는 대학 생활에서, 때로는 나만 멈춰 서 있는 것 같아 조급하고 외로울 수 있습니다. 하지만 지금 느끼는 고민과 방황은 당신이 성장을 갈망하고 있기 때문이에요. 당신의 지금까지의 땀방울은 절대 헛되지 않습니다.',
-        psychologicalReframing:
-          '결과로 나를 판단하지 말고, 오늘 하루도 성실하게 버텨낸 나 자신에게 먼저 따뜻한 온기를 선물해주세요.',
-        microActions: [
-          { title: '좋아하는 음악 들으며 10분 산책', description: '바깥 공기를 마시며 굳은 몸을 부드럽게 풀어주세요.' },
-          { title: '따뜻한 차 한 잔으로 몸 데우기', description: '심리적 온기를 몸의 온도로 채워보세요.' },
-          { title: '오늘 가장 잘한 작은 일 칭찬', description: '작은 것 하나라도 나에게 "수고했어"라고 말해주세요.' },
-        ],
-        pocketCheer: '어둠이 깊을수록 별은 더욱 빛납니다. 당신의 계절은 곧 시작됩니다.',
-        recommendedQuote: '넘어지는 것은 부끄러운 일이 아니다. 일어서지 않는 것이 부끄러운 일이다.',
-      });
+      alert('위로 메시지를 생성하는 중에 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.');
     } finally {
       setIsLoading(false);
     }
