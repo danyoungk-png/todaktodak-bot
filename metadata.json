@@ -1,0 +1,6 @@
+{
+  "name": "토닥토닥 (TodakTodak) - 대학생 마음 쉼터",
+  "description": "학업, 진로, 인간관계로 지친 대학생들을 위한 익명 고민 나눔, AI 맞춤 심리 위로 및 Google Chat 연동 응원 메시지 앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
